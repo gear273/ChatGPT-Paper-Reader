@@ -1,5 +1,8 @@
 from typing import List
 import openai
+import os
+
+my_secret = os.environ['OPENAI_API_KEY']
 
 
 class ModelInterface(object):
@@ -14,8 +17,9 @@ class ModelInterface(object):
 class OpenAIModel(object):
 
     def __init__(self, api_key, model='gpt-3.5-turbo', temperature=0.2) -> None:
-        openai.api_key = api_key
+        openai.api_key = my_secret
         self.model = model
+
         self.temperature = temperature
 
     def send_msg(self, msg: List[dict], return_raw_text=True):
